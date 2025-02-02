@@ -1,8 +1,15 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.odettek.turfwar",
-    "sha256_cert_fingerprints": ["6c:0c:f9:eb:7e:ed:42:f7:be:9a:73:c7:48:0b:64:62:cf:09:26:64:52:5a:40:42:af:c4:1c:a6:b1:91:43:eb"]
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.odettek.turfwar",
+      "sha256_cert_fingerprints": [
+        "6C:0C:F9:EB:7E:ED:42:F7:BE:9A:73:C7:48:0B:64:62:CF:09:26:64:52:5A:40:42:AF:C4:1C:A6:B1:91:43:EB"
+      ]
+    }
   }
-}]
+]
