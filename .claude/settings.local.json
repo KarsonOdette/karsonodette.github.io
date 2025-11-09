@@ -4,7 +4,11 @@
       "Bash(mkdir:*)",
       "WebFetch(domain:play.google.com)",
       "Bash(curl:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git clone:*)",
+      "Read(//tmp/privacy_temp/**)"
     ],
     "deny": [],
     "ask": []
