@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bedtime Story Magic - BioRust Studios</title>
+    <meta name="description" content="AI-powered personalized bedtime stories for children. Create magical adventures customized for your child.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_kidstories.png" alt="Bedtime Story Magic" class="app-icon">
+            <h1>Bedtime Story Magic</h1>
+            <p class="tagline">AI-Powered Personalized Bedtime Stories</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.kidstories">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Bedtime Story Magic uses advanced AI to create personalized bedtime stories for your children.
+                Every story is unique, featuring your child as the hero of their own adventure. Choose themes,
+                settings, and characters to create magical tales that make bedtime special and memorable.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/kidstories/screenshot1.png" alt="Bedtime Story Magic Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/kidstories/screenshot2.png" alt="Bedtime Story Magic Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/kidstories/screenshot3.png" alt="Bedtime Story Magic Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/kidstories/screenshot4.png" alt="Bedtime Story Magic Screenshot 4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/kidstories/screenshot5.png" alt="Bedtime Story Magic Screenshot 5">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>✨ AI-Generated Stories</h3>
+                    <p>Every story is unique and created just for your child</p>
+                </div>
+                <div class="feature">
+                    <h3>🎭 Customizable Characters</h3>
+                    <p>Make your child the hero with personalized characters</p>
+                </div>
+                <div class="feature">
+                    <h3>🌍 Multiple Themes</h3>
+                    <p>Choose from adventures, fairy tales, space, animals, and more</p>
+                </div>
+                <div class="feature">
+                    <h3>📚 Story Library</h3>
+                    <p>Save favorite stories to read again and again</p>
+                </div>
+                <div class="feature">
+                    <h3>🌙 Bedtime Friendly</h3>
+                    <p>Stories designed to calm and comfort at bedtime</p>
+                </div>
+                <div class="feature">
+                    <h3>👨‍👩‍👧‍👦 Family Safe</h3>
+                    <p>Age-appropriate content that parents can trust</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact</a>
+                <a href="https://github.com/KarsonOdette/PrivacyPolicies">Privacy Policy</a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>

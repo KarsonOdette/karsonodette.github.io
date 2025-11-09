@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Amateur Band Plan - BioRust Studios</title>
+    <meta name="description" content="Quick reference guide for US Amateur Radio band allocations. Perfect for ham radio operators.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_hambands.png" alt="US Amateur Band Plan" class="app-icon">
+            <h1>US Amateur Band Plan</h1>
+            <p class="tagline">Quick Reference for Amateur Radio Band Allocations</p>
+            <a href="https://play.google.com/store/apps/details?id=com.kimbrelk.ham">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                The US Amateur Band Plan app is your essential companion for ham radio operations.
+                Get instant access to all US amateur radio band allocations, modes, and privileges.
+                Perfect for studying, operating, or quick reference in the field.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/bandplan/screenshot1.png" alt="US Amateur Band Plan Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/bandplan/screenshot2.png" alt="US Amateur Band Plan Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/bandplan/screenshot3.png" alt="US Amateur Band Plan Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/bandplan/screenshot4.png" alt="US Amateur Band Plan Screenshot 4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/bandplan/screenshot5.png" alt="US Amateur Band Plan Screenshot 5">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>📻 Complete Band Coverage</h3>
+                    <p>Access all US amateur radio bands from HF to microwave frequencies</p>
+                </div>
+                <div class="feature">
+                    <h3>🎯 License Class Info</h3>
+                    <p>See privileges for Technician, General, and Extra class licenses</p>
+                </div>
+                <div class="feature">
+                    <h3>📱 Offline Access</h3>
+                    <p>No internet connection required - perfect for field operations</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡ Quick Reference</h3>
+                    <p>Fast, intuitive interface for finding band plan information</p>
+                </div>
+                <div class="feature">
+                    <h3>🔄 Up to Date</h3>
+                    <p>Current band plan information following FCC regulations</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Clean Design</h3>
+                    <p>Easy-to-read layout with clear visual organization</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact</a>
+                <a href="https://github.com/KarsonOdette/PrivacyPolicies">Privacy Policy</a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>

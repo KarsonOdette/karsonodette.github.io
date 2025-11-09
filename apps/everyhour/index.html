@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Every Hour Block Planner - BioRust Studios</title>
+    <meta name="description" content="Plan your day hour by hour with time blocking. Boost productivity and stay organized.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_everyhour.png" alt="Every Hour Block Planner" class="app-icon">
+            <h1>Every Hour Block Planner</h1>
+            <p class="tagline">Master Your Time with Hour-by-Hour Planning</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.everyhour">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Every Hour Block Planner helps you take control of your day using the powerful time-blocking
+                technique. Plan your activities hour by hour, stay focused on what matters, and achieve more
+                with intentional scheduling. Perfect for professionals, students, and anyone looking to
+                maximize their productivity.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/everyhour/screenshot1.png" alt="Every Hour Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/everyhour/screenshot2.png" alt="Every Hour Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/everyhour/screenshot3.png" alt="Every Hour Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/everyhour/screenshot4.png" alt="Every Hour Screenshot 4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/everyhour/screenshot5.png" alt="Every Hour Screenshot 5">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>⏰ Hourly Time Blocks</h3>
+                    <p>Plan your day in one-hour increments for better time management</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Color Coding</h3>
+                    <p>Organize activities by category with customizable colors</p>
+                </div>
+                <div class="feature">
+                    <h3>📅 Daily Planning</h3>
+                    <p>Create focused daily schedules that keep you on track</p>
+                </div>
+                <div class="feature">
+                    <h3>🔔 Reminders</h3>
+                    <p>Set notifications to stay on schedule throughout your day</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 Progress Tracking</h3>
+                    <p>Monitor how you spend your time and improve your habits</p>
+                </div>
+                <div class="feature">
+                    <h3>✨ Simple & Clean</h3>
+                    <p>Intuitive interface designed for effortless planning</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact</a>
+                <a href="https://github.com/KarsonOdette/PrivacyPolicies">Privacy Policy</a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>

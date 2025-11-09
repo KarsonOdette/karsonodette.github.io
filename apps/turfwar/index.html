@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf War - BioRust Studios</title>
+    <meta name="description" content="Strategic territory control game. Compete with friends to dominate the map.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_turfwar.png" alt="Turf War" class="app-icon">
+            <h1>Turf War</h1>
+            <p class="tagline">Strategic Territory Control Game</p>
+            <a href="https://play.google.com/store/apps/details?id=com.odettek.turfwar">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Turf War is a competitive strategy game where you battle to control territory on the map.
+                Expand your empire, defend your turf, and compete with players to dominate the battlefield.
+                Use tactical thinking and strategic planning to outmaneuver your opponents and claim victory.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/turfwar/screenshot1.png" alt="Turf War Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/turfwar/screenshot2.png" alt="Turf War Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/turfwar/screenshot3.png" alt="Turf War Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/turfwar/screenshot4.png" alt="Turf War Screenshot 4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/turfwar/screenshot5.png" alt="Turf War Screenshot 5">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🗺️ Territory Control</h3>
+                    <p>Claim and defend your turf on dynamic maps</p>
+                </div>
+                <div class="feature">
+                    <h3>⚔️ Strategic Gameplay</h3>
+                    <p>Plan your moves carefully to outsmart opponents</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 Competitive Mode</h3>
+                    <p>Challenge other players and climb the leaderboards</p>
+                </div>
+                <div class="feature">
+                    <h3>🎮 Engaging Mechanics</h3>
+                    <p>Easy to learn, challenging to master gameplay</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 Progress Tracking</h3>
+                    <p>Monitor your stats and achievements</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Visual Design</h3>
+                    <p>Clean, colorful interface with smooth animations</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact</a>
+                <a href="https://github.com/KarsonOdette/PrivacyPolicies">Privacy Policy</a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
