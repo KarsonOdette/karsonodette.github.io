@@ -100,6 +100,7 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const totalSlides = slides.length;
+        let autoScrollTimer;
 
         function getSlidesPerView() {
             const width = window.innerWidth;
@@ -119,6 +120,13 @@
             container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
         }
 
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
         function changeSlide(direction) {
             const maxSlide = getMaxSlide();
             currentSlide = currentSlide + direction;
@@ -130,15 +138,14 @@
             }
 
             updateCarousel();
+            resetAutoScroll();
         }
 
         // Update on window resize
         window.addEventListener('resize', updateCarousel);
 
-        // Auto-advance carousel every 5 seconds
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000);
+        // Start auto-advance carousel
+        resetAutoScroll();
     </script>
 </body>
 </html>
