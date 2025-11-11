@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /turfwar/lobby/index.html
+Disallow: /turfwar/privacy.html
+Disallow: /turfwar/tos.html
 
 Sitemap: https://bioruststudios.com/sitemap.xml
