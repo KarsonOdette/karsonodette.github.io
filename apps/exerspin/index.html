@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExerSpin - BioRust Studios</title>
+    <meta name="description" content="Stuck in a fitness rut? Mix up your workouts with ExerSpin - the app that spins your next exercise for you!">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_exerspin.png" alt="ExerSpin" class="app-icon">
+            <h1>ExerSpin</h1>
+            <p class="tagline">Spin. Sweat. Score. Repeat.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.kimbrelk.exerspin&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Stuck in a fitness rut? Same old exercises, day after day?
+                It's time to mix things up. Welcome to <strong>ExerSpin</strong>!
+            </p>
+            <p class="description">
+                We replaced boring workout plans with something way more fun: a giant spinner that picks your next exercise <strong>FOR YOU</strong>.
+                It's random. It's a challenge. It's your new fitness obsession.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/exerspin/screenshot1.png" alt="ExerSpin Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/exerspin/screenshot2.png" alt="ExerSpin Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/exerspin/screenshot3.png" alt="ExerSpin Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/exerspin/screenshot4.png" alt="ExerSpin Screenshot 4">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/exerspin/screenshot5.png" alt="ExerSpin Screenshot 5">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🎡 THE MAGIC SPINNER</h3>
+                    <p>Your personal workout DJ. One tap and your next exercise is locked and loaded. No more thinking, just doing.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 LEVEL UP WITH POINTS</h3>
+                    <p>Every exercise you crush earns you points. Compete against yourself, build your score, and turn your fitness into a high-score game!</p>
+                </div>
+                <div class="feature">
+                    <h3>💥 ENDLESS VARIETY</h3>
+                    <p>With a huge library of exercises, you'll never get the same workout twice. Keep your body guessing and the results coming.</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡️ ZERO EXCUSES</h3>
+                    <p>Don't know where to start? Just hit spin! ExerSpin is the perfect cure for workout procrastination.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>This is for you if:</h2>
+            <div class="features">
+                <div class="feature">
+                    <p>You're bored with your current routine.</p>
+                </div>
+                <div class="feature">
+                    <p>You want a fun reason to get moving.</p>
+                </div>
+                <div class="feature">
+                    <p>You love a good challenge and a little bit of chaos.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        let autoScrollTimer;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Start auto-advance carousel
+        resetAutoScroll();
+    </script>
+</body>
+</html>
