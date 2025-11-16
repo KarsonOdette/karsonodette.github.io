@@ -3,7 +3,7 @@
   <!-- Main Page -->
   <url>
     <loc>https://bioruststudios.com/</loc>
-    <lastmod>2025-11-09</lastmod>
+    <lastmod>2025-11-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,6 +12,12 @@
   <url>
     <loc>https://bioruststudios.com/apps/kidstories/index.html</loc>
     <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/exerspin/index.html</loc>
+    <lastmod>2025-11-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -51,37 +57,43 @@
     <loc>https://bioruststudios.com/apps/kidstories/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/exerspin/privacy.html</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://bioruststudios.com/apps/everyhour/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://bioruststudios.com/apps/turfwar/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://bioruststudios.com/apps/bandplan/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://bioruststudios.com/apps/unlearn/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>https://bioruststudios.com/apps/hamlogger/privacy.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.1</priority>
   </url>
 
   <!-- Terms of Service -->
@@ -98,19 +110,4 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- Turfwar Web App -->
-  <url>
-    <loc>https://bioruststudios.com/turfwar/index.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Policies -->
-  <url>
-    <loc>https://bioruststudios.com/policies/privacy_kidstories.html</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
 </urlset>
