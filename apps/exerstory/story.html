@@ -264,7 +264,7 @@
             }
 
             try {
-                const response = await fetch(`https://PLACEHOLDER_STORY_URL?id=${storyId}`);
+                const response = await fetch(`https://us-central1-workoutstory-b9c0a.cloudfunctions.net/getSharedStory?id=${storyId}`);
 
                 if (!response.ok) {
                     throw new Error('Story not found');
