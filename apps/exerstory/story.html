@@ -62,18 +62,15 @@
             padding: 12px 16px;
             border-radius: 18px;
             position: relative;
+            align-self: center;
         }
 
         .message.narrator {
-            align-self: flex-start;
             background: rgba(255, 255, 255, 0.1);
-            border-bottom-left-radius: 4px;
         }
 
         .message.user {
-            align-self: flex-end;
             background: #3b82f6;
-            border-bottom-right-radius: 4px;
         }
 
         .message-text {
@@ -115,6 +112,30 @@
         .workout-details {
             font-size: 0.85rem;
             color: #a0a0a0;
+        }
+
+        .pending-workout {
+            background: rgba(255, 200, 0, 0.1);
+            border: 2px solid #fbbf24;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .pending-workout-header {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pending-workout-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 5px;
         }
 
         .error-container {
@@ -170,7 +191,7 @@
         }
 
         .google-play-badge {
-            height: 50px;
+            height: 80px;
         }
 
         footer {
@@ -254,6 +275,20 @@
     </div>
 
     <script>
+        // Exercise ID to name mapping from WorkoutStory-Android
+        const EXERCISE_NAMES = {
+            'pushups': 'Push-ups',
+            'situps': 'Sit-ups',
+            'squats': 'Squats',
+            'plank': 'Plank',
+            'burpees': 'Burpees',
+            'lunges': 'Lunges',
+            'mountain_climbers': 'Mountain Climbers',
+            'jumping_jacks': 'Jumping Jacks',
+            'high_knees': 'High Knees',
+            'crunches': 'Crunches'
+        };
+
         async function loadStory() {
             const urlParams = new URLSearchParams(window.location.search);
             const storyId = urlParams.get('id');
@@ -327,11 +362,15 @@
                         workoutDetails = formatRepetitionGoal(message.repetitionGoal);
                     }
 
+                    // Get exercise name from ID if available
+                    const exerciseName = message.exerciseId ? EXERCISE_NAMES[message.exerciseId] || message.exerciseId : null;
+                    const titleWithExercise = exerciseName ? `${escapeHtml(message.workoutTitle)} (${exerciseName})` : escapeHtml(message.workoutTitle);
+
                     content += `
                         <div class="workout-card ${outcomeClass}">
                             <div class="workout-header">
                                 <span class="workout-icon">${icon}</span>
-                                <span class="workout-title">${escapeHtml(message.workoutTitle)}</span>
+                                <span class="workout-title">${titleWithExercise}</span>
                             </div>
                             ${workoutDetails ? `<div class="workout-details">${workoutDetails}</div>` : ''}
                         </div>
@@ -341,6 +380,32 @@
                 messageDiv.innerHTML = content;
                 messagesContainer.appendChild(messageDiv);
             });
+
+            // Display final pending workout if it exists
+            if (story.finalWorkout) {
+                const pendingDiv = document.createElement('div');
+                pendingDiv.className = 'pending-workout';
+
+                const exerciseName = story.finalWorkout.exerciseId ?
+                    EXERCISE_NAMES[story.finalWorkout.exerciseId] || story.finalWorkout.exerciseId :
+                    'Unknown Exercise';
+
+                let workoutDetails = '';
+                if (story.finalWorkout.repetitionGoal) {
+                    workoutDetails = formatRepetitionGoal(story.finalWorkout.repetitionGoal);
+                }
+
+                pendingDiv.innerHTML = `
+                    <div class="pending-workout-header">
+                        <span>⏳</span>
+                        <span>Pending Workout</span>
+                    </div>
+                    <div class="pending-workout-title">${escapeHtml(story.finalWorkout.title || 'Workout')} (${exerciseName})</div>
+                    ${workoutDetails ? `<div class="workout-details">${workoutDetails}</div>` : ''}
+                `;
+
+                messagesContainer.appendChild(pendingDiv);
+            }
         }
 
         function formatRepetitionGoal(goal) {
