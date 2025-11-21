@@ -14,9 +14,9 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: #1a1f2e;
             min-height: 100vh;
-            color: #e8e8e8;
+            color: #e8eaed;
             line-height: 1.6;
         }
 
@@ -36,41 +36,55 @@
         .header h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
-            color: #fff;
+            color: #e8eaed;
         }
 
         .author {
             font-size: 0.9rem;
-            color: #a0a0a0;
+            color: #9aa0a6;
         }
 
         .metadata {
             font-size: 0.8rem;
-            color: #707070;
+            color: #80868b;
             margin-top: 5px;
         }
 
         .messages {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             padding: 20px 0;
         }
 
+        .message-row {
+            display: flex;
+            width: 100%;
+        }
+
+        .message-row.narrator {
+            justify-content: flex-start;
+        }
+
+        .message-row.user {
+            justify-content: flex-end;
+        }
+
         .message {
-            max-width: 85%;
+            width: 100%;
             padding: 12px 16px;
-            border-radius: 18px;
+            border-radius: 16px;
             position: relative;
-            align-self: center;
         }
 
         .message.narrator {
-            background: rgba(255, 255, 255, 0.1);
+            background: #2d3748;
+            color: #e8eaed;
         }
 
         .message.user {
-            background: #3b82f6;
+            background: #4a5f7f;
+            color: #ffffff;
         }
 
         .message-text {
@@ -78,54 +92,74 @@
         }
 
         .workout-card {
-            background: rgba(0, 0, 0, 0.3);
+            background: #2d3748;
             border-radius: 12px;
-            padding: 15px;
-            margin-top: 10px;
-            border-left: 4px solid;
+            padding: 10px 12px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            border: none;
+            opacity: 0.6;
+            width: 100%;
         }
 
         .workout-card.completed {
-            border-left-color: #10b981;
+            opacity: 0.6;
         }
 
         .workout-card.failed {
-            border-left-color: #ef4444;
-        }
-
-        .workout-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .workout-icon {
-            font-size: 1.2rem;
+            opacity: 0.6;
         }
 
         .workout-title {
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: #e8eaed;
+            margin-bottom: 2px;
+        }
+
+        .exercise-name-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+
+        .exercise-name {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #e8eaed;
         }
 
         .workout-details {
             font-size: 0.85rem;
-            color: #a0a0a0;
+            color: #9aa0a6;
+        }
+
+        .workout-icon {
+            font-size: 1.4rem;
+        }
+
+        .workout-icon.completed {
+            color: #8ab4f8;
+        }
+
+        .workout-icon.failed {
+            color: #f28b82;
         }
 
         .pending-workout {
-            background: rgba(255, 200, 0, 0.1);
-            border: 2px solid #fbbf24;
-            border-radius: 12px;
-            padding: 15px;
+            background: #3b2f1f;
+            border: 2px solid #f9ab00;
+            border-radius: 16px;
+            padding: 16px;
             margin: 20px 0;
+            width: 100%;
         }
 
         .pending-workout-header {
             font-size: 1rem;
             font-weight: 600;
-            color: #fbbf24;
+            color: #fdd663;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -136,6 +170,7 @@
             font-size: 0.95rem;
             font-weight: 500;
             margin-bottom: 5px;
+            color: #e8eaed;
         }
 
         .error-container {
@@ -146,11 +181,11 @@
         .error-container h2 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #ef4444;
+            color: #f28b82;
         }
 
         .error-container p {
-            color: #a0a0a0;
+            color: #9aa0a6;
             margin-bottom: 20px;
         }
 
@@ -162,8 +197,8 @@
         .loading-spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: #3b82f6;
+            border: 3px solid rgba(138, 180, 248, 0.2);
+            border-top-color: #8ab4f8;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -183,10 +218,11 @@
         .cta-section h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
+            color: #e8eaed;
         }
 
         .cta-section p {
-            color: #a0a0a0;
+            color: #9aa0a6;
             margin-bottom: 20px;
         }
 
@@ -197,18 +233,18 @@
         footer {
             text-align: center;
             padding: 20px;
-            color: #707070;
+            color: #80868b;
             font-size: 0.8rem;
         }
 
         footer a {
-            color: #a0a0a0;
+            color: #9aa0a6;
             text-decoration: none;
             margin: 0 10px;
         }
 
         footer a:hover {
-            color: #fff;
+            color: #8ab4f8;
         }
 
         .social-icon {
@@ -218,12 +254,12 @@
         }
 
         @media (max-width: 600px) {
-            .message {
-                max-width: 90%;
-            }
-
             .header h1 {
                 font-size: 1.5rem;
+            }
+
+            .workout-card {
+                padding: 12px;
             }
         }
     </style>
@@ -346,16 +382,26 @@
             messagesContainer.innerHTML = '';
 
             story.messages.forEach(message => {
+                // Create message row wrapper
+                const messageRow = document.createElement('div');
+                messageRow.className = `message-row ${message.isUser ? 'user' : 'narrator'}`;
+
+                // Create message bubble
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${message.isUser ? 'user' : 'narrator'}`;
 
                 let content = `<div class="message-text">${escapeHtml(message.text)}</div>`;
 
-                // Add workout card if applicable
+                messageDiv.innerHTML = content;
+                messageRow.appendChild(messageDiv);
+                messagesContainer.appendChild(messageRow);
+
+                // Add workout card if applicable (as separate element after message)
                 if (message.workoutTitle && message.workoutOutcome) {
                     const isCompleted = message.workoutOutcome === 'Completed';
                     const icon = isCompleted ? '&#10003;' : '&#10007;';
                     const outcomeClass = isCompleted ? 'completed' : 'failed';
+                    const iconClass = isCompleted ? 'completed' : 'failed';
 
                     let workoutDetails = '';
                     if (message.repetitionGoal) {
@@ -364,21 +410,20 @@
 
                     // Get exercise name from ID if available
                     const exerciseName = message.exerciseId ? EXERCISE_NAMES[message.exerciseId] || message.exerciseId : null;
-                    const titleWithExercise = exerciseName ? `${escapeHtml(message.workoutTitle)} (${exerciseName})` : escapeHtml(message.workoutTitle);
 
-                    content += `
-                        <div class="workout-card ${outcomeClass}">
-                            <div class="workout-header">
-                                <span class="workout-icon">${icon}</span>
-                                <span class="workout-title">${titleWithExercise}</span>
-                            </div>
-                            ${workoutDetails ? `<div class="workout-details">${workoutDetails}</div>` : ''}
+                    const workoutCard = document.createElement('div');
+                    workoutCard.className = `workout-card ${outcomeClass}`;
+                    workoutCard.innerHTML = `
+                        <div class="workout-title">${escapeHtml(message.workoutTitle)}</div>
+                        <div class="exercise-name-row">
+                            <span class="exercise-name">${exerciseName || 'Exercise'}</span>
+                            <span class="workout-icon ${iconClass}">${icon}</span>
                         </div>
+                        ${workoutDetails ? `<div class="workout-details">${workoutDetails}</div>` : ''}
                     `;
-                }
 
-                messageDiv.innerHTML = content;
-                messagesContainer.appendChild(messageDiv);
+                    messagesContainer.appendChild(workoutCard);
+                }
             });
 
             // Display final pending workout if it exists

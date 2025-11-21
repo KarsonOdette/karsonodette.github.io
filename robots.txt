@@ -3,5 +3,6 @@ Allow: /
 Disallow: /turfwar/lobby/index.html
 Disallow: /turfwar/privacy.html
 Disallow: /turfwar/tos.html
+Disallow: /apps/exerstory/story.html
 
 Sitemap: https://bioruststudios.com/sitemap.xml
