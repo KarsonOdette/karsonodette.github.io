@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Spin - BioRust Studios</title>
+    <meta name="description" content="Having trouble making up your mind? Let the wheel decide for you! Decision Spin is the ultimate decision-making tool that lets you create, customize, and spin your own wheels.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_spinner.png" alt="Decision Spin" class="app-icon">
+            <h1>Decision Spin</h1>
+            <p class="tagline">Can't Decide? Let the Wheel Decide for You!</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.spinner&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Having trouble making up your mind? Let the wheel decide for you! <strong>Decision Spin</strong> is the ultimate decision-making tool that lets you create, customize, and spin your own wheels. Whether you are settling a bet, choosing where to eat, or picking a winner for a raffle, our app makes the process easy and exciting.
+            </p>
+            <p class="description">
+                Stop wasting time debating options. Just enter your choices, customize the spinner to look exactly how you want, and give it a spin!
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🎨 Fully Customizable</h3>
+                    <p>You are in control. Edit the text, choose your favorite colors, and name your spinners with custom titles.</p>
+                </div>
+                <div class="feature">
+                    <h3>♾️ Create Unlimited Spinners</h3>
+                    <p>Make a specific wheel for "Dinner Ideas," another for "Board Game Dice," and another for "Party Dares." Save them all!</p>
+                </div>
+                <div class="feature">
+                    <h3>⚙️ Smooth Physics</h3>
+                    <p>Enjoy a satisfying spinning animation that lands on a random result every time.</p>
+                </div>
+                <div class="feature">
+                    <h3>✨ Easy to Use</h3>
+                    <p>A clean, simple interface that lets you create a new wheel in seconds.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ways to Use Decision Spin</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🤔 Make Decisions</h3>
+                    <p>Can't choose between Pizza, Sushi, or Burgers? Put them on the wheel and spin!</p>
+                </div>
+                <div class="feature">
+                    <h3>🎲 Gaming & RPGs</h3>
+                    <p>Lost your dice or spinner? Create a custom wheel with numbers or actions for your board games and D&D sessions.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏫 Classroom & Education</h3>
+                    <p>Teachers can use it to pick a student at random or choose the next activity.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 Raffles & Giveaways</h3>
+                    <p>Enter names and spin to pick a fair and random winner.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏋️ Workout Roulette</h3>
+                    <p>Create a wheel with different exercises (Pushups, Squats, Planks) and let the app dictate your workout.</p>
+                </div>
+                <div class="feature">
+                    <h3>🧹 Chore Assigner</h3>
+                    <p>Who has to do the dishes tonight? Let the spinner decide!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Why Decision Spin?</h2>
+            <p class="description">
+                Why leave it to chance? (Actually... do leave it to chance!) Spin the wheel and see what it decides. Download <strong>Decision Spin</strong> today and turn your hard decisions into fun spins.
+            </p>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="tos.html">Terms of Service</a>
+                <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=app_page" target="_blank" rel="noopener noreferrer"><img src="../../images/x-logo-white.png" alt="X" class="social-icon"></a>
+            </div>
+            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        let autoScrollTimer;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Start auto-advance carousel
+        resetAutoScroll();
+    </script>
+</body>
+</html>
