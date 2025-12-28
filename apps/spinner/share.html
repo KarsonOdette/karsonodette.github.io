@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Spinner - Spinner Randomizer</title>
+    <meta name="description" content="Spin the wheel and see what you get!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .author {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .spinner-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner-canvas {
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .spinner-canvas:hover:not(.spinning) {
+            transform: scale(1.02);
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 30px solid #ff4444;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            z-index: 10;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .result-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-card h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .result-card .result-text {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .cta-title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .google-play-badge {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .google-play-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .google-play-badge img {
+            height: 60px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            color: #ff4444;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .spin-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .icon-button {
+            background: #f0f0f0;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-button:hover:not(:disabled) {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .icon-button.hidden {
+            display: none;
+        }
+
+        .icon-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #333;
+        }
+
+        .remove-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .remove-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .remove-button svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .spinner-wrapper {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading">
+        <div class="loading-spinner"></div>
+        <p>Loading spinner...</p>
+    </div>
+
+    <div id="app" class="container" style="display: none;">
+        <h1 id="spinner-title"></h1>
+        <div id="author-name" class="author"></div>
+
+        <div class="spinner-wrapper">
+            <div class="pointer"></div>
+            <canvas id="spinner" class="spinner-canvas"></canvas>
+        </div>
+
+        <button id="spin-btn" class="spin-button">Spin the Wheel!</button>
+
+        <div class="controls-row">
+            <button id="mute-btn" class="icon-button" title="Toggle sound effects">
+                <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                </svg>
+            </button>
+            <button id="randomize-btn" class="icon-button" title="Randomize positions">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+                </svg>
+            </button>
+            <button id="reset-btn" class="icon-button hidden" title="Reset spinner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                </svg>
+            </button>
+        </div>
+
+        <div id="result" class="result-card">
+            <h2>Result:</h2>
+            <div class="result-text" id="result-text"></div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-title">Create your own Spinner with Decision Spin!</div>
+            <a id="play-store-link" href="#" class="google-play-badge" target="_blank" rel="noopener">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                     alt="Get it on Google Play">
+            </a>
+        </div>
+    </div>
+
+    <div id="error" class="error" style="display: none;"></div>
+
+    <script>
+        const API_URL = 'https://us-central1-spinner-a757e.cloudfunctions.net/getSharedSpinner';
+        const PLAY_STORE_BASE_URL = 'https://play.google.com/store/apps/details?id=com.bioruststudios.spinner';
+
+        let spinnerData = null;
+        let isSpinning = false;
+        let currentRotation = 0;
+        let previousSectionIndex = -1;
+        let isSfxMuted = false;
+        let displayedItems = [];
+        let originalItems = [];
+        let selectedItemIndex = -1;
+
+        // Sound effects
+        const swooshSound = new Audio('sounds/sfx_swoosh1.wav');
+        const clickSound = new Audio('sounds/sfx_click1.wav');
+
+        // Configure sound volumes
+        swooshSound.volume = 0.2;
+        clickSound.volume = 0.3;
+
+        // Get spinner ID from URL parameter
+        function getSpinnerId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        }
+
+        // Fetch spinner data from Firebase function
+        async function fetchSpinner(id) {
+            const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}`);
+            if (!response.ok) {
+                throw new Error(response.status === 404 ? 'Spinner not found' : 'Failed to load spinner');
+            }
+            return response.json();
+        }
+
+        // Convert ARGB int to CSS color
+        function argbToColor(argb) {
+            const a = (argb >> 24) & 0xFF;
+            const r = (argb >> 16) & 0xFF;
+            const g = (argb >> 8) & 0xFF;
+            const b = argb & 0xFF;
+            return `rgba(${r}, ${g}, ${b}, ${a / 255})`;
+        }
+
+        // Draw the spinner
+        function drawSpinner(rotation = 0) {
+            const canvas = document.getElementById('spinner');
+            const ctx = canvas.getContext('2d');
+            const items = displayedItems;
+
+            // Set canvas size with device pixel ratio for crisp rendering
+            const dpr = window.devicePixelRatio || 1;
+            const displaySize = Math.max(Math.min(canvas.parentElement.clientWidth, 400), 100);
+
+            canvas.width = displaySize * dpr;
+            canvas.height = displaySize * dpr;
+            canvas.style.width = displaySize + 'px';
+            canvas.style.height = displaySize + 'px';
+
+            // Scale context for high DPI
+            ctx.scale(dpr, dpr);
+
+            const centerX = displaySize / 2;
+            const centerY = displaySize / 2;
+            const radius = displaySize / 2 - 10;
+
+            // Safety check
+            if (radius <= 0) return;
+
+            ctx.clearRect(0, 0, displaySize, displaySize);
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate((rotation * Math.PI) / 180);
+
+            const anglePerItem = (2 * Math.PI) / items.length;
+
+            // Calculate appropriate font size based on radius and number of items
+            const baseFontSize = Math.max(12, Math.min(radius / 8, 20));
+
+            // Draw each segment
+            items.forEach((item, index) => {
+                const startAngle = index * anglePerItem;
+                const endAngle = (index + 1) * anglePerItem;
+
+                // Draw segment
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.closePath();
+                ctx.fillStyle = argbToColor(item.backgroundColor);
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+
+                // Draw text
+                ctx.save();
+                ctx.rotate(startAngle + anglePerItem / 2);
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = argbToColor(item.foregroundColor);
+                ctx.font = `bold ${baseFontSize}px sans-serif`;
+                ctx.fillText(item.name, radius * 0.6, 0);
+                ctx.restore();
+            });
+
+            // Draw center circle
+            ctx.beginPath();
+            ctx.arc(0, 0, 20, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.strokeStyle = '#667eea';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+        // Perform spin animation
+        function performSpin() {
+            if (isSpinning || !spinnerData) return;
+
+            isSpinning = true;
+            const spinBtn = document.getElementById('spin-btn');
+            const canvas = document.getElementById('spinner');
+            const resultCard = document.getElementById('result');
+
+            spinBtn.disabled = true;
+            resultCard.classList.remove('show');
+            canvas.classList.add('spinning');
+
+            // Play swoosh sound
+            if (!isSfxMuted) {
+                swooshSound.currentTime = 0;
+                swooshSound.play().catch(e => console.log('Audio play failed:', e));
+            }
+
+            // Reset section tracking
+            previousSectionIndex = -1;
+
+            // Random spin: 5-8 full rotations plus random offset
+            const rotations = 5 + Math.random() * 3;
+            const randomOffset = Math.random() * 360;
+            const totalRotation = currentRotation + (rotations * 360) + randomOffset;
+            const duration = 3000;
+            const startTime = Date.now();
+
+            function animate() {
+                const elapsed = Date.now() - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function (ease-out)
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const rotation = currentRotation + (totalRotation - currentRotation) * easeOut;
+
+                drawSpinner(rotation);
+
+                // Play click sound when crossing sections
+                if (displayedItems.length > 0) {
+                    const normalizedRotation = ((rotation % 360) + 360) % 360;
+                    const currentAngle = ((270 - normalizedRotation) + 360) % 360;
+                    const angleStep = 360 / displayedItems.length;
+                    const currentSectionIndex = Math.floor(currentAngle / angleStep) % displayedItems.length;
+
+                    if (previousSectionIndex !== -1 && currentSectionIndex !== previousSectionIndex && !isSfxMuted) {
+                        clickSound.currentTime = 0;
+                        clickSound.play().catch(e => console.log('Audio play failed:', e));
+                    }
+                    previousSectionIndex = currentSectionIndex;
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    currentRotation = totalRotation % 360;
+                    previousSectionIndex = -1;
+                    finishSpin();
+                }
+            }
+
+            animate();
+        }
+
+        // Finish spin and show result
+        function finishSpin() {
+            const canvas = document.getElementById('spinner');
+            const resultCard = document.getElementById('result');
+            const resultText = document.getElementById('result-text');
+            const spinBtn = document.getElementById('spin-btn');
+
+            canvas.classList.remove('spinning');
+
+            // Calculate which item was selected (pointer is at top/270 degrees)
+            const anglePerItem = 360 / displayedItems.length;
+            const normalizedRotation = ((currentRotation % 360) + 360) % 360;
+            const pointerAngle = 270; // Top of circle
+            const selectedAngle = ((pointerAngle - normalizedRotation) + 360) % 360;
+            selectedItemIndex = Math.floor(selectedAngle / anglePerItem) % displayedItems.length;
+            const selectedItem = displayedItems[selectedItemIndex];
+
+            // Show result with remove button
+            resultText.innerHTML = `
+                <div style="position: relative;">
+                    ${selectedItem.name}
+                    ${displayedItems.length > 1 ? `
+                        <button class="remove-button" onclick="removeSelectedItem()" title="Remove this option">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>
+                        </button>
+                    ` : ''}
+                </div>
+            `;
+            resultCard.style.background = argbToColor(selectedItem.backgroundColor);
+            resultCard.style.color = argbToColor(selectedItem.foregroundColor);
+
+            setTimeout(() => {
+                resultCard.classList.add('show');
+                spinBtn.disabled = false;
+                isSpinning = false;
+            }, 200);
+        }
+
+        // Remove the selected item
+        function removeSelectedItem() {
+            if (selectedItemIndex !== -1 && selectedItemIndex < displayedItems.length && displayedItems.length > 1) {
+                const resultCard = document.getElementById('result');
+
+                // Hide result card
+                resultCard.classList.remove('show');
+
+                setTimeout(() => {
+                    // Remove the item
+                    displayedItems.splice(selectedItemIndex, 1);
+                    selectedItemIndex = -1;
+
+                    // Show reset button if needed
+                    updateResetButtonVisibility();
+
+                    // Redraw spinner
+                    drawSpinner(currentRotation);
+                }, 300);
+            }
+        }
+
+        // Toggle SFX mute
+        function toggleMute() {
+            isSfxMuted = !isSfxMuted;
+            updateVolumeIcon();
+        }
+
+        // Update volume icon
+        function updateVolumeIcon() {
+            const volumeIcon = document.getElementById('volume-icon');
+            if (isSfxMuted) {
+                volumeIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+            } else {
+                volumeIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+            }
+        }
+
+        // Randomize wheel positions
+        function randomizeWheel() {
+            if (!isSpinning) {
+                // Fisher-Yates shuffle
+                const shuffled = [...displayedItems];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                displayedItems = shuffled;
+
+                // Show reset button
+                updateResetButtonVisibility();
+
+                // Redraw spinner
+                drawSpinner(currentRotation);
+            }
+        }
+
+        // Reset wheel to original state
+        function resetWheel() {
+            if (!isSpinning) {
+                displayedItems = [...originalItems];
+
+                // Hide result card
+                const resultCard = document.getElementById('result');
+                resultCard.classList.remove('show');
+                selectedItemIndex = -1;
+
+                // Hide reset button
+                updateResetButtonVisibility();
+
+                // Redraw spinner
+                drawSpinner(currentRotation);
+            }
+        }
+
+        // Update reset button visibility
+        function updateResetButtonVisibility() {
+            const resetBtn = document.getElementById('reset-btn');
+            const hasChanges = displayedItems.length !== originalItems.length ||
+                               !displayedItems.every((item, index) => item === originalItems[index]);
+
+            if (hasChanges) {
+                resetBtn.classList.remove('hidden');
+            } else {
+                resetBtn.classList.add('hidden');
+            }
+        }
+
+        // Initialize the app
+        async function init() {
+            const spinnerId = getSpinnerId();
+
+            if (!spinnerId) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = 'No spinner ID provided';
+                return;
+            }
+
+            // Update Play Store link with UTM parameters
+            const playStoreLink = document.getElementById('play-store-link');
+            playStoreLink.href = `${PLAY_STORE_BASE_URL}&referrer=utm_medium%3Dsocial%26utm_campaign%3Dshare_spinner%26utm_content%3D${encodeURIComponent(spinnerId)}`;
+
+            try {
+                spinnerData = await fetchSpinner(spinnerId);
+
+                // Sort items by orderIndex
+                spinnerData.items.sort((a, b) => a.orderIndex - b.orderIndex);
+
+                // Apply repeat count (matching app behavior)
+                const repeatCount = spinnerData.repeat_count || 1;
+                if (repeatCount > 1) {
+                    const baseItems = [...spinnerData.items];
+                    spinnerData.items = [];
+                    for (let i = 0; i < repeatCount; i++) {
+                        spinnerData.items.push(...baseItems);
+                    }
+                }
+
+                // Initialize displayed and original items
+                displayedItems = [...spinnerData.items];
+                originalItems = [...spinnerData.items];
+
+                // Update UI
+                document.getElementById('spinner-title').textContent = spinnerData.title;
+                if (spinnerData.author) {
+                    document.getElementById('author-name').textContent = `Created by ${spinnerData.author}`;
+                }
+
+                // Show app
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+
+                // Wait for layout to complete before drawing spinner
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        drawSpinner(currentRotation);
+                    });
+                });
+
+                // Set up event listeners
+                document.getElementById('spin-btn').addEventListener('click', performSpin);
+                document.getElementById('spinner').addEventListener('click', performSpin);
+                document.getElementById('mute-btn').addEventListener('click', toggleMute);
+                document.getElementById('randomize-btn').addEventListener('click', randomizeWheel);
+                document.getElementById('reset-btn').addEventListener('click', resetWheel);
+
+                // Redraw on window resize
+                window.addEventListener('resize', () => {
+                    if (!isSpinning) {
+                        drawSpinner(currentRotation);
+                    }
+                });
+
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').textContent = error.message || 'Failed to load spinner';
+            }
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
+</html>
