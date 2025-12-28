@@ -256,6 +256,110 @@
             fill: white;
         }
 
+        .report-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 68, 68, 0.9);
+            color: white;
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+            z-index: 100;
+        }
+
+        .report-button:hover {
+            background: rgba(255, 68, 68, 1);
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(255, 68, 68, 0.6);
+        }
+
+        .report-button svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .confirmation-dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .confirmation-dialog.show {
+            display: flex;
+        }
+
+        .confirmation-content {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .confirmation-content h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .confirmation-content p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .confirmation-buttons button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .confirmation-buttons .cancel-btn {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .confirmation-buttons .cancel-btn:hover {
+            background: #d0d0d0;
+        }
+
+        .confirmation-buttons .confirm-btn {
+            background: #ff4444;
+            color: white;
+        }
+
+        .confirmation-buttons .confirm-btn:hover {
+            background: #ff3333;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
@@ -322,8 +426,28 @@
 
     <div id="error" class="error" style="display: none;"></div>
 
+    <!-- Report Button -->
+    <button id="report-btn" class="report-button" title="Report inappropriate content" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+    </button>
+
+    <!-- Confirmation Dialog -->
+    <div id="confirmation-dialog" class="confirmation-dialog">
+        <div class="confirmation-content">
+            <h2>Report Spinner</h2>
+            <p>Are you sure you want to report this spinner for inappropriate content? This action will be reviewed by our team.</p>
+            <div class="confirmation-buttons">
+                <button class="cancel-btn" onclick="cancelReport()">Cancel</button>
+                <button class="confirm-btn" onclick="confirmReport()">Report</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const API_URL = 'https://us-central1-spinner-a757e.cloudfunctions.net/getSharedSpinner';
+        const REPORT_API_URL = 'https://us-central1-spinner-a757e.cloudfunctions.net/reportSharedSpinner';
         const PLAY_STORE_BASE_URL = 'https://play.google.com/store/apps/details?id=com.bioruststudios.spinner';
 
         let spinnerData = null;
@@ -634,6 +758,53 @@
             }
         }
 
+        // Show report confirmation dialog
+        function showReportDialog() {
+            const dialog = document.getElementById('confirmation-dialog');
+            dialog.classList.add('show');
+        }
+
+        // Cancel report
+        function cancelReport() {
+            const dialog = document.getElementById('confirmation-dialog');
+            dialog.classList.remove('show');
+        }
+
+        // Confirm and submit report
+        async function confirmReport() {
+            const dialog = document.getElementById('confirmation-dialog');
+            const reportBtn = document.getElementById('report-btn');
+            const spinnerId = getSpinnerId();
+
+            try {
+                // Disable button to prevent double-clicks
+                reportBtn.disabled = true;
+
+                const response = await fetch(`${REPORT_API_URL}?id=${encodeURIComponent(spinnerId)}`, {
+                    method: 'POST',
+                });
+
+                if (response.ok) {
+                    alert('Thank you for your report. Our team will review this content.');
+                    // Hide the report button after successful report
+                    reportBtn.style.display = 'none';
+                } else if (response.status === 403) {
+                    alert('This spinner has already been reviewed.');
+                    reportBtn.style.display = 'none';
+                } else {
+                    const errorData = await response.json();
+                    alert(errorData.message || 'Failed to submit report. Please try again.');
+                    reportBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error reporting spinner:', error);
+                alert('Failed to submit report. Please try again.');
+                reportBtn.disabled = false;
+            }
+
+            dialog.classList.remove('show');
+        }
+
         // Initialize the app
         async function init() {
             const spinnerId = getSpinnerId();
@@ -678,6 +849,7 @@
                 // Show app
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('app').style.display = 'block';
+                document.getElementById('report-btn').style.display = 'flex';
 
                 // Wait for layout to complete before drawing spinner
                 requestAnimationFrame(() => {
@@ -692,6 +864,7 @@
                 document.getElementById('mute-btn').addEventListener('click', toggleMute);
                 document.getElementById('randomize-btn').addEventListener('click', randomizeWheel);
                 document.getElementById('reset-btn').addEventListener('click', resetWheel);
+                document.getElementById('report-btn').addEventListener('click', showReportDialog);
 
                 // Redraw on window resize
                 window.addEventListener('resize', () => {
