@@ -10,7 +10,8 @@
       "Bash(git clone:*)",
       "Read(//tmp/privacy_temp/**)",
       "WebFetch(domain:bioruststudios.com)",
-      "Read(//Users/k.odette/Documents/Repos/**)"
+      "Read(//Users/k.odette/Documents/Repos/**)",
+      "Bash(cp:*)"
     ],
     "deny": [],
     "ask": []
