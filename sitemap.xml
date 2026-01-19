@@ -63,6 +63,18 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/scanner/</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/scanner-ime/</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- Privacy Policies -->
   <url>
@@ -119,6 +131,18 @@
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/scanner/privacy.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/scanner-ime/privacy.html</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
 
   <!-- Terms of Service -->
   <url>
@@ -142,6 +166,12 @@
   <url>
     <loc>https://bioruststudios.com/apps/spinner/tos.html</loc>
     <lastmod>2025-12-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/scanner/tos.html</loc>
+    <lastmod>2026-01-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
