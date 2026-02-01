@@ -10,7 +10,13 @@
 
   <!-- App Pages -->
   <url>
-    <loc>https://bioruststudios.com/apps/kidstories/</loc>
+    <loc>https://bioruststudios.com/apps/bandplan/</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/everyhour/</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,26 +28,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bioruststudios.com/apps/everyhour/</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bioruststudios.com/apps/turfwar/</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bioruststudios.com/apps/bandplan/</loc>
-    <lastmod>2025-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bioruststudios.com/apps/unlearn/</loc>
-    <lastmod>2025-11-09</lastmod>
+    <loc>https://bioruststudios.com/apps/exerstory/</loc>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -52,8 +40,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bioruststudios.com/apps/exerstory/</loc>
-    <lastmod>2025-12-09</lastmod>
+    <loc>https://bioruststudios.com/apps/kidstories/</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/morse-ime/</loc>
+    <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -76,8 +70,14 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bioruststudios.com/apps/morse-ime/</loc>
-    <lastmod>2026-01-22</lastmod>
+    <loc>https://bioruststudios.com/apps/turfwar/</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/unlearn/</loc>
+    <lastmod>2025-11-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
