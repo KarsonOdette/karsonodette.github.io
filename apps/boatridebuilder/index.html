@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat Ride Builder - BioRust Studios</title>
+    <meta name="description" content="Build your own boat ride adventures! Design winding water tracks, decorate with fun scenery, and ride your creation.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logo_boatridebuilder.png" alt="Boat Ride Builder" class="app-icon">
+            <h1>Boat Ride Builder</h1>
+            <p class="tagline">Design, Build, and Ride Your Own Boat Adventures</p>
+            <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.boatridebuilder&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page">
+                <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Boat Ride Builder lets you create your own boat ride adventures from scratch.
+                Lay down winding water tracks, fill your world with colorful scenery and characters,
+                then hop in the boat and enjoy the ride! Perfect for kids and anyone who loves creative building games.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/boatridebuilder/1.png" alt="Boat Ride Builder Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/boatridebuilder/2.png" alt="Boat Ride Builder Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/boatridebuilder/3.png" alt="Boat Ride Builder Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/boatridebuilder/4.png" alt="Boat Ride Builder Screenshot 4">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">&#8249;</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">&#8250;</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🛤️ Build Water Tracks</h3>
+                    <p>Lay down winding water channels using a variety of track pieces including straights, curves, and turns to create your perfect boat ride</p>
+                </div>
+                <div class="feature">
+                    <h3>🎨 Decorate Your World</h3>
+                    <p>Place trees, flowers, houses, animals, and characters around your ride to bring your creation to life</p>
+                </div>
+                <div class="feature">
+                    <h3>🚤 Ride Your Creation</h3>
+                    <p>Hit the Ride button and watch your boat cruise along the track you built</p>
+                </div>
+                <div class="feature">
+                    <h3>🧒 Kid-Friendly Design</h3>
+                    <p>Colorful, intuitive interface designed for kids to jump right in and start building</p>
+                </div>
+                <div class="feature">
+                    <h3>🌳 Tons of Scenery</h3>
+                    <p>Choose from a wide selection of decorations including trees, flowers, mushrooms, animals, landmarks, and more</p>
+                </div>
+                <div class="feature">
+                    <h3>💾 Save Your Rides</h3>
+                    <p>Save your favorite creations and come back to build more whenever you want</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="../../index.html">All Apps</a>
+                <a href="mailto:bioruststudios@gmail.com">Contact Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=app_page" target="_blank" rel="noopener noreferrer"><img src="../../images/x-logo-white.png" alt="X" class="social-icon"></a>
+            </div>
+            <p class="copyright">&copy; 2025 BioRust Studios, LLC. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        let autoScrollTimer;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        // Update on window resize
+        window.addEventListener('resize', updateCarousel);
+
+        // Start auto-advance carousel
+        resetAutoScroll();
+    </script>
+</body>
+</html>
