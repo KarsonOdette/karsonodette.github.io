@@ -87,6 +87,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/boatridebuilder/</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- Privacy Policies -->
   <url>
@@ -164,6 +170,12 @@
   <url>
     <loc>https://bioruststudios.com/apps/morse-ime/privacy.html</loc>
     <lastmod>2026-01-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>https://bioruststudios.com/apps/boatridebuilder/privacy.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
