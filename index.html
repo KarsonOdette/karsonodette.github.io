@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioRust Studio, LLC's Apps</title>
+    <title>BioRust Studios — Android Apps & Games</title>
+    <meta name="description" content="BioRust Studios builds thoughtfully crafted Android apps and games — from productivity tools to AI-powered experiences. Explore our apps on Google Play.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-bg: #FAFAFA;
+            --color-surface: #FFFFFF;
+            --color-accent: #6C3FE0;
+            --color-accent-hover: #5A31C4;
+            --color-heading: #1A1A2E;
+            --color-body: #555;
+            --color-border: #E8E8EE;
+            --color-footer-bg: #1A1A2E;
+            --color-footer-text: #A0A0B8;
+            --color-footer-heading: #FFFFFF;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 999px;
+            --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-card-hover: 0 10px 24px rgba(0,0,0,0.08);
+            --transition: 0.25s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,236 +36,556 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
+        /* ── Nav ── */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0 24px;
+        }
+
+        .nav-inner {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        h1 {
-            color: white;
-            font-size: 2.5rem;
+        .nav-logo {
             font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 1.15rem;
+            color: var(--color-heading);
+            text-decoration: none;
         }
 
-        .subtitle {
-            color: rgba(255, 255, 255, 0.9);
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border: 1.5px solid var(--color-accent);
+            border-radius: var(--radius-full);
+            color: var(--color-accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .nav-cta:hover {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        .nav-cta:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px 64px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--color-heading);
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--color-body);
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        /* ── Apps Section ── */
+        .apps-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        .section-heading {
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 48px;
+            letter-spacing: -0.01em;
+        }
+
+        .category {
+            margin-bottom: 48px;
+        }
+
+        .category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-heading {
             font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--color-border);
         }
 
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-            gap: 30px;
-            margin-bottom: 60px;
-            justify-content: center;
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
 
         .app-card {
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.3s ease;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-card);
+            text-decoration: none;
+            color: inherit;
+            transition: transform var(--transition), box-shadow var(--transition);
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        .app-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow var(--transition);
         }
 
         .app-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-card-hover);
         }
 
-        .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 20px;
+        .app-card.visible:hover {
+            transform: translateY(-3px);
+        }
+
+        .app-card:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        .app-card .app-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
-        .app-card:hover .app-icon {
-            transform: scale(1.05);
+        .app-card .app-info {
+            min-width: 0;
         }
 
-        .app-name {
-            font-size: 1.1rem;
+        .app-card .app-name {
+            font-size: 0.95rem;
             font-weight: 600;
+            color: var(--color-heading);
+            margin-bottom: 2px;
+        }
+
+        .app-card .app-desc {
+            font-size: 0.85rem;
+            color: var(--color-body);
+            line-height: 1.4;
+        }
+
+        /* ── Responsive grid ── */
+        @media (min-width: 560px) {
+            .apps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .apps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .apps-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--color-footer-bg);
+            color: var(--color-footer-text);
+            padding: 64px 24px 0;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--color-footer-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-footer-text);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .footer-socials a:hover {
+            border-color: #fff;
             color: #fff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-
-        footer {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        .footer-socials a:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
         }
 
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        footer a:hover {
-            color: #e0e0ff;
-            text-decoration: underline;
+        .footer-socials svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
         }
 
         .footer-links {
+            list-style: none;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
             gap: 10px;
-            margin-bottom: 15px;
         }
 
-        .copyright {
-            color: rgba(255, 255, 255, 0.8);
+        .footer-links a {
+            color: var(--color-footer-text);
+            text-decoration: none;
             font-size: 0.9rem;
-            margin-top: 15px;
+            transition: color var(--transition);
         }
 
-        .social-icon {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-            display: inline-block;
+        .footer-links a:hover {
+            color: #fff;
         }
 
-        @media (max-width: 768px) {
-            h1 {
+        .footer-links a:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 48px;
+            padding: 24px 0;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 700px) {
+            .footer-inner {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* ── Mobile hero ── */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 56px 20px 48px;
+            }
+
+            .hero h1 {
                 font-size: 2rem;
             }
 
-            .apps-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 20px;
+            .hero p {
+                font-size: 1rem;
             }
 
-            .app-icon {
-                width: 100px;
-                height: 100px;
+            .section-heading {
+                font-size: 1.4rem;
             }
+        }
 
-            .footer-links {
-                flex-direction: column;
-                align-items: center;
-            }
+        /* ── No-JS fallback ── */
+        .no-js .app-card {
+            opacity: 1;
+            transform: none;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>BioRust Studios</h1>
-            <p class="subtitle">Quality Apps for Android</p>
-        </header>
+<body class="no-js">
 
-        <div class="apps-grid">
-            <a href="apps/bandplan/" class="app-card">
-                <img src="images/logo_hambands.png" alt="US Amateur Band Plan" class="app-icon">
-                <div class="app-name">US Amateur Band Plan</div>
-            </a>
-
-            <a href="apps/hamlogger/" class="app-card">
-                <img src="images/logo_hamlogger.png" alt="Ham Logger" class="app-icon">
-                <div class="app-name">Ham Logger</div>
-            </a>
-
-            <a href="apps/everyhour/" class="app-card">
-                <img src="images/logo_everyhour.png" alt="Every Hour Block Planner" class="app-icon">
-                <div class="app-name">Every Hour Block Planner</div>
-            </a>
-
-            <a href="apps/kidstories/" class="app-card">
-                <img src="images/logo_kidstories.png" alt="Bedtime Story Magic" class="app-icon">
-                <div class="app-name">Bedtime Story Magic</div>
-            </a>
-
-            <a href="apps/imageai/" class="app-card">
-                <img src="images/logo_imageai.png" alt="NanoSpark" class="app-icon">
-                <div class="app-name">NanoSpark</div>
-            </a>
-
-            <a href="apps/unlearn/" class="app-card">
-                <img src="images/logo_unlearn.webp" alt="Unlearn" class="app-icon">
-                <div class="app-name">Unlearn - Bad Habit Tracker</div>
-            </a>
-
-            <a href="apps/exerspin/" class="app-card">
-                <img src="images/logo_exerspin.png" alt="ExerSpin" class="app-icon">
-                <div class="app-name">ExerSpin</div>
-            </a>
-
-            <a href="apps/exerstory/" class="app-card">
-                <img src="images/logo_exerstory.png" alt="ExerStory" class="app-icon">
-                <div class="app-name">ExerStory</div>
-            </a>
-
-            <a href="apps/spinner/" class="app-card">
-                <img src="images/logo_spinner.png" alt="Decision Spin" class="app-icon">
-                <div class="app-name">Decision Spin</div>
-            </a>
-
-            <a href="apps/turfwar/" class="app-card">
-                <img src="images/logo_turfwar.png" alt="Turf War" class="app-icon">
-                <div class="app-name">Turf War</div>
-            </a>
-
-            <a href="apps/scanner/" class="app-card">
-                <img src="images/logo_scanner.png" alt="QR and Barcode Scanner" class="app-icon">
-                <div class="app-name">QR and Barcode Scanner</div>
-            </a>
-
-            <a href="apps/scanner-ime/" class="app-card">
-                <img src="images/logo_scanner-ime.png" alt="Barcode Keyboard" class="app-icon">
-                <div class="app-name">Barcode Keyboard</div>
-            </a>
-
-            <a href="apps/morse-ime/" class="app-card">
-                <img src="images/logo_morse-ime.png" alt="Morse Code Keyboard" class="app-icon">
-                <div class="app-name">Morse Code Keyboard</div>
-            </a>
-
-            <a href="apps/boatridebuilder/" class="app-card">
-                <img src="images/logo_boatridebuilder.png" alt="Boat Ride Builder" class="app-icon">
-                <div class="app-name">Boat Ride Builder</div>
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">BioRust Studios</a>
+            <a href="https://play.google.com/store/apps/dev?id=6211553945921808791&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dhomepage" class="nav-cta" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.382.218-.72.61-.92zM14.852 13.06l2.706 2.706-11.18 6.349 8.474-9.055zm3.86-3.767l2.452 1.392c.635.36.635 1.27 0 1.63l-2.452 1.392-2.97-2.207 2.97-2.207zM6.378 1.885l11.18 6.349-2.706 2.706-8.474-9.055z"/></svg>
+                Google Play
             </a>
         </div>
+    </nav>
 
-        <footer>
-            <div class="footer-links">
-                <a href="https://play.google.com/store/apps/dev?id=6211553945921808791&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page">View All Apps</a>
-                <a href="mailto:bioruststudios@gmail.com">Contact Us</a>
-                <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=homepage" target="_blank" rel="noopener noreferrer"><img src="images/x-logo-white.png" alt="X" class="social-icon"></a>
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Thoughtfully crafted apps for everyday life</h1>
+        <p>BioRust Studios builds useful, well-designed Android apps — from productivity planners to AI-powered experiences and fun games.</p>
+    </section>
+
+    <!-- Apps -->
+    <section class="apps-section">
+        <!-- Ham Radio -->
+        <div class="category">
+            <h3 class="category-heading">Ham Radio</h3>
+            <div class="apps-grid">
+                <a href="apps/bandplan/" class="app-card">
+                    <img src="images/logo_hambands.png" alt="US Amateur Band Plan" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">US Amateur Band Plan</div>
+                        <div class="app-desc">Quick-reference guide for US ham radio frequencies</div>
+                    </div>
+                </a>
+
+                <a href="apps/hamlogger/" class="app-card">
+                    <img src="images/logo_hamlogger.png" alt="Ham Logger" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Ham Logger</div>
+                        <div class="app-desc">Log and manage your ham radio contacts with ease</div>
+                    </div>
+                </a>
+
+                <a href="apps/morse-ime/" class="app-card">
+                    <img src="images/logo_morse-ime.png" alt="Morse Code Keyboard" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Morse Code Keyboard</div>
+                        <div class="app-desc">Type messages in Morse code from any app</div>
+                    </div>
+                </a>
             </div>
-            <p class="copyright">© 2025 BioRust Studios, LLC. All rights reserved.</p>
-        </footer>
-    </div>
+        </div>
+
+        <!-- Productivity -->
+        <div class="category">
+            <h3 class="category-heading">Productivity</h3>
+            <div class="apps-grid">
+                <a href="apps/everyhour/" class="app-card">
+                    <img src="images/logo_everyhour.png" alt="Every Hour Block Planner" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Every Hour Block Planner</div>
+                        <div class="app-desc">Plan your day in focused hourly time blocks</div>
+                    </div>
+                </a>
+
+                <a href="apps/imageai/" class="app-card">
+                    <img src="images/logo_imageai.png" alt="NanoSpark" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">NanoSpark</div>
+                        <div class="app-desc">Transform your photos with AI-powered editing tools</div>
+                    </div>
+                </a>
+
+                <a href="apps/unlearn/" class="app-card">
+                    <img src="images/logo_unlearn.webp" alt="Unlearn" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Unlearn</div>
+                        <div class="app-desc">Track bad habits and build healthier routines</div>
+                    </div>
+                </a>
+
+                <a href="apps/scanner/" class="app-card">
+                    <img src="images/logo_scanner.png" alt="QR and Barcode Scanner" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">QR and Barcode Scanner</div>
+                        <div class="app-desc">Scan QR codes and barcodes instantly</div>
+                    </div>
+                </a>
+
+                <a href="apps/scanner-ime/" class="app-card">
+                    <img src="images/logo_scanner-ime.png" alt="Barcode Keyboard" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Barcode Keyboard</div>
+                        <div class="app-desc">Type barcodes directly from your keyboard</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Exercise -->
+        <div class="category">
+            <h3 class="category-heading">Exercise</h3>
+            <div class="apps-grid">
+                <a href="apps/exerspin/" class="app-card">
+                    <img src="images/logo_exerspin.png" alt="ExerSpin" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">ExerSpin</div>
+                        <div class="app-desc">Spin the wheel for a random workout challenge</div>
+                    </div>
+                </a>
+
+                <a href="apps/exerstory/" class="app-card">
+                    <img src="images/logo_exerstory.png" alt="ExerStory" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">ExerStory</div>
+                        <div class="app-desc">Follow AI-guided stories that keep you moving</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Games -->
+        <div class="category">
+            <h3 class="category-heading">Games</h3>
+            <div class="apps-grid">
+                <a href="apps/spinner/" class="app-card">
+                    <img src="images/logo_spinner.png" alt="Decision Spin" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Decision Spin</div>
+                        <div class="app-desc">Spin a wheel to make decisions the fun way</div>
+                    </div>
+                </a>
+
+                <a href="apps/turfwar/" class="app-card">
+                    <img src="images/logo_turfwar.png" alt="Turf War" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Turf War</div>
+                        <div class="app-desc">Claim real-world territory in this location-based game</div>
+                    </div>
+                </a>
+
+                <a href="apps/boatridebuilder/" class="app-card">
+                    <img src="images/logo_boatridebuilder.png" alt="Boat Ride Builder" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Boat Ride Builder</div>
+                        <div class="app-desc">Plan and organize your next boat trip</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Other Apps -->
+        <div class="category">
+            <h3 class="category-heading">Other Apps</h3>
+            <div class="apps-grid">
+                <a href="apps/kidstories/" class="app-card">
+                    <img src="images/logo_kidstories.png" alt="Bedtime Story Magic" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Bedtime Story Magic</div>
+                        <div class="app-desc">AI-generated personalized bedtime stories for kids</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>BioRust Studios</h4>
+                <p class="footer-brand-desc">An independent app and game development studio crafting useful, well-designed experiences for Android.</p>
+                <div class="footer-socials">
+                    <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=homepage" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="mailto:bioruststudios@gmail.com" aria-label="Email">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="https://play.google.com/store/apps/dev?id=6211553945921808791&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dfooter" target="_blank" rel="noopener noreferrer">Google Play</a></li>
+                    <li><a href="mailto:bioruststudios@gmail.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2025 BioRust Studios, LLC. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.body.classList.remove('no-js');
+        var cards = document.querySelectorAll('.app-card');
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            cards.forEach(function(card) { observer.observe(card); });
+        } else {
+            cards.forEach(function(card) { card.classList.add('visible'); });
+        }
+    </script>
 </body>
 </html>
