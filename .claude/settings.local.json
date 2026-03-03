@@ -11,7 +11,8 @@
       "Read(//tmp/privacy_temp/**)",
       "WebFetch(domain:bioruststudios.com)",
       "Read(//Users/k.odette/Documents/Repos/**)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(find .:*)"
     ],
     "deny": [],
     "ask": []
