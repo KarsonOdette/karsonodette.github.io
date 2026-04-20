@@ -12,7 +12,8 @@
       "WebFetch(domain:bioruststudios.com)",
       "Read(//Users/k.odette/Documents/Repos/**)",
       "Bash(cp:*)",
-      "Bash(find .:*)"
+      "Bash(find .:*)",
+      "WebFetch(domain:www.apple.com)"
     ],
     "deny": [],
     "ask": []

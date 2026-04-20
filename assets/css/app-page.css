@@ -120,9 +120,28 @@ h1 {
     margin-bottom: 28px;
 }
 
+.store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-store-badge {
+    width: auto;
+    height: 54px;
+    transition: transform var(--transition);
+    cursor: pointer;
+}
+
+.app-store-badge:hover {
+    transform: scale(1.05);
+}
+
 .google-play-badge {
-    width: 180px;
-    height: auto;
+    width: auto;
+    height: 54px;
     transition: transform var(--transition);
     cursor: pointer;
 }
