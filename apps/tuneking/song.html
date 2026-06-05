@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tunament — Shared Song</title>
-    <meta name="description" content="Listen to an AI-generated song from Tunament by BioRust Studios, then make your own.">
+    <title>TuneKing — Shared Song</title>
+    <meta name="description" content="Listen to an AI-generated song from TuneKing by BioRust Studios, then make your own.">
 
     <!-- Open Graph (static defaults; updated client-side once the song loads) -->
     <meta property="og:site_name" content="BioRust Studios">
     <meta property="og:type" content="music.song">
-    <meta property="og:title" content="Tunament — Shared Song">
+    <meta property="og:title" content="TuneKing — Shared Song">
     <meta property="og:description" content="Listen to an AI-generated song, then make your own.">
 
     <link rel="stylesheet" href="../../assets/css/app-page.css">
@@ -211,7 +211,7 @@
     <nav class="nav">
         <div class="nav-inner">
             <a href="../../index.html" class="nav-logo">BioRust Studios</a>
-            <a href="https://bioruststudios.com/apps/tunament/" class="nav-cta">Tunament</a>
+            <a href="https://bioruststudios.com/apps/tuneking/" class="nav-cta">TuneKing</a>
         </div>
     </nav>
 
@@ -226,7 +226,7 @@
         <h1 style="color: var(--color-heading); margin-bottom: 8px;">Song unavailable</h1>
         <p id="error-message">This song isn't available. It may be private or no longer exist.</p>
         <p style="margin-top: 24px;">
-            <a href="https://bioruststudios.com/apps/tunament/" class="cta-btn">Create your own song</a>
+            <a href="https://bioruststudios.com/apps/tuneking/" class="cta-btn">Create your own song</a>
         </p>
     </div>
 
@@ -268,7 +268,7 @@
 
         <div class="cta-card">
             <p>Made with AI. Think you can do better?</p>
-            <a href="https://bioruststudios.com/apps/tunament/" class="cta-btn">
+            <a href="https://bioruststudios.com/apps/tuneking/" class="cta-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
                 Create your own song
             </a>
@@ -286,7 +286,7 @@
                 <h4>Links</h4>
                 <ul class="footer-links-list">
                     <li><a href="../../index.html">All Apps</a></li>
-                    <li><a href="https://bioruststudios.com/apps/tunament/">Tunament</a></li>
+                    <li><a href="https://bioruststudios.com/apps/tuneking/">TuneKing</a></li>
                     <li><a href="mailto:contact@bioruststudios.com">Contact</a></li>
                 </ul>
             </div>
@@ -485,7 +485,7 @@
         function renderSong(song) {
             const title = (song.title && song.title.trim()) || "Untitled";
             el("song-title").textContent = title;
-            document.title = title + " — Tunament";
+            document.title = title + " — TuneKing";
 
             const artist = song.artist && song.artist.nameDisplay;
             el("song-artist").textContent = artist ? "by " + artist : "";
