@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuneKing - AI Music Generator - BioRust Studios</title>
+    <meta name="description" content="Turn your imagination into full songs in seconds. Compete in weekly music contests, discover tracks from creators worldwide, and share your sound. No experience required.">
+    <link rel="stylesheet" href="../../assets/css/app-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="../../index.html" class="nav-logo">BioRust Studios</a>
+            <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.aimusiccontest" class="nav-cta" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.382.218-.72.61-.92zM14.852 13.06l2.706 2.706-11.18 6.349 8.474-9.055zm3.86-3.767l2.452 1.392c.635.36.635 1.27 0 1.63l-2.452 1.392-2.97-2.207 2.97-2.207zM6.378 1.885l11.18 6.349-2.706 2.706-8.474-9.055z"/></svg>
+                Google Play
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <img src="../../images/logos/logo_tuneking.png" alt="TuneKing" class="app-icon">
+            <h1>TuneKing</h1>
+            <p class="tagline">Turn Your Imagination Into Music — In Seconds</p>
+            <div class="store-badges">
+                <a href="https://play.google.com/store/apps/details?id=com.bioruststudios.aimusiccontest" target="_blank" rel="noopener noreferrer">
+                    <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>About</h2>
+            <p class="description">
+                Unleash your inner producer with TuneKing — the AI music generator that turns a text prompt into a
+                fully realized song in seconds. Pop anthem, lo-fi beat, cinematic score, heavy metal riff — if you
+                can imagine it, TuneKing can make it. No musical experience or equipment required.
+                Join a thriving community of creators, discover incredible sounds from around the world,
+                and put your skills to the test in exciting weekly music contests.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <div class="screenshot-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="../../images/tuneking/01.png" alt="TuneKing Screenshot 1">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/tuneking/02.png" alt="TuneKing Screenshot 2">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/tuneking/03.png" alt="TuneKing Screenshot 3">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="../../images/tuneking/04.png" alt="TuneKing Screenshot 4">
+                    </div>
+                </div>
+                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>🎶 Text-to-Music Generation</h3>
+                    <p>Type a prompt describing your vibe, genre, or lyrics and watch AI bring it to life — complete with vocals, instrumentation, and cover art</p>
+                </div>
+                <div class="feature">
+                    <h3>🏆 Weekly Contests</h3>
+                    <p>A new theme drops every week. Generate your best track, submit it, and climb the leaderboard to claim the title of TuneKing champion</p>
+                </div>
+                <div class="feature">
+                    <h3>🌍 Global Discover Feed</h3>
+                    <p>Stream an endless feed of AI-generated music from creators worldwide — and see the exact prompts they used to achieve their sound</p>
+                </div>
+                <div class="feature">
+                    <h3>🚀 Easy Sharing</h3>
+                    <p>Share your tracks instantly to TikTok, Instagram, YouTube, and more — perfect for creators looking for original, royalty-free background music</p>
+                </div>
+                <div class="feature">
+                    <h3>🎸 Endless Genres</h3>
+                    <p>Pop, rap, EDM, rock, country, classical, synth-wave, lo-fi — whatever sound you're chasing, TuneKing can generate it</p>
+                </div>
+                <div class="feature">
+                    <h3>💎 Credits &amp; Subscriptions</h3>
+                    <p>Get started with free credits, then purchase more or subscribe for a weekly stipend to keep the music flowing</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>BioRust Studios</h4>
+                <p class="footer-brand-desc">An independent app and game development studio crafting useful, well-designed experiences for Android.</p>
+                <div class="footer-socials">
+                    <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=app_page" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="mailto:contact@bioruststudios.com" aria-label="Email">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Links</h4>
+                <ul class="footer-links-list">
+                    <li><a href="../../index.html">All Apps</a></li>
+                    <li><a href="mailto:contact@bioruststudios.com">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="tos.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2022-2026 BioRust Studios, LLC. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        let autoScrollTimer;
+
+        function getSlidesPerView() {
+            const width = window.innerWidth;
+            if (width > 1024) return 3;
+            if (width > 768) return 2;
+            return 1;
+        }
+
+        function getMaxSlide() {
+            return Math.max(0, totalSlides - getSlidesPerView());
+        }
+
+        function updateCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const slidesPerView = getSlidesPerView();
+            const slideWidth = 100 / slidesPerView;
+            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function changeSlide(direction) {
+            const maxSlide = getMaxSlide();
+            currentSlide = currentSlide + direction;
+
+            if (currentSlide > maxSlide) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = maxSlide;
+            }
+
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        window.addEventListener('resize', updateCarousel);
+        resetAutoScroll();
+    </script>
+</body>
+</html>
