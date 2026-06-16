@@ -350,7 +350,12 @@
         }
 
         function getSongId() {
-            return new URLSearchParams(window.location.search).get("id");
+            // New share URLs put the id in the path (/song/<id>/, served from
+            // tuneking.app via the songShare function). Legacy links used ?id=.
+            const fromQuery = new URLSearchParams(window.location.search).get("id");
+            if (fromQuery) return fromQuery;
+            const m = window.location.pathname.match(/\/song\/([^/]+)\/?$/);
+            return m ? decodeURIComponent(m[1]) : null;
         }
 
         // ── Audio + FFT ──────────────────────────────────────────────
