@@ -13,7 +13,11 @@
       "Read(//Users/k.odette/Documents/Repos/**)",
       "Bash(cp:*)",
       "Bash(find .:*)",
-      "WebFetch(domain:www.apple.com)"
+      "WebFetch(domain:www.apple.com)",
+      "Bash(git mv *)",
+      "Read(//Users/karsonodette/Repos/MusicAICompetition-App/firebase/**)",
+      "Bash(ls -la functions/)",
+      "Bash(cat firebase.json)"
     ],
     "deny": [],
     "ask": []

@@ -6,11 +6,25 @@
     <title>TuneKing — Shared Song</title>
     <meta name="description" content="Listen to an AI-generated song from TuneKing by BioRust Studios, then make your own.">
 
-    <!-- Open Graph (static defaults; updated client-side once the song loads) -->
+    <!-- Open Graph / Twitter card.
+         These are the generic defaults for the canonical page. When a song is
+         shared, the TuneKing app links to the `songShare` Cloud Function, which
+         fetches this file and rewrites everything between the BIORUST:OG markers
+         with that song's real title, artist, cover art and audio. Link-preview
+         crawlers (Discord, iMessage, Slack, etc.) don't run JS, so the per-song
+         tags must be server-rendered; the client-side player below still works
+         as before for humans. Keep the markers intact. -->
+    <!-- BIORUST:OG:START -->
     <meta property="og:site_name" content="BioRust Studios">
     <meta property="og:type" content="music.song">
     <meta property="og:title" content="TuneKing — Shared Song">
     <meta property="og:description" content="Listen to an AI-generated song, then make your own.">
+    <meta property="og:image" content="https://bioruststudios.com/images/logos/logo_tuneking.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="TuneKing — Shared Song">
+    <meta name="twitter:description" content="Listen to an AI-generated song, then make your own.">
+    <meta name="twitter:image" content="https://bioruststudios.com/images/logos/logo_tuneking.png">
+    <!-- BIORUST:OG:END -->
 
     <link rel="stylesheet" href="../../assets/css/app-page.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
