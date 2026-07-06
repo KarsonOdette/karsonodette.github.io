@@ -188,6 +188,12 @@
 
   <!-- Terms of Service -->
   <url>
+    <loc>https://bioruststudios.com/apps/bandplan/tos.html</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://bioruststudios.com/apps/kidstories/tos.html</loc>
     <lastmod>2025-11-09</lastmod>
     <changefreq>yearly</changefreq>
