@@ -3,202 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ham Logger - BioRust Studios</title>
-    <meta name="description" content="Simple and efficient logging for amateur radio contacts. Track your QSOs with ease.">
-    <link rel="stylesheet" href="../../assets/css/app-page.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Ham Logger</title>
+    <meta name="robots" content="noindex">
+
+    <!-- Ham Logger now lives at its own site, https://www.hamlogger.app/. This
+         page used to host the app's landing content; it forwards there. The
+         sibling files (privacy.html, tos.html) are left in place since store
+         listings and old links point at them directly. -->
+    <script>
+        location.replace("https://www.hamlogger.app/");
+    </script>
+
+    <!-- No-JS fallback. -->
+    <meta http-equiv="refresh" content="0; url=https://www.hamlogger.app/">
+    <link rel="canonical" href="https://www.hamlogger.app/">
 </head>
 <body>
-
-    <!-- Nav -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="../../index.html" class="nav-logo">BioRust Studios</a>
-            <a href="https://play.google.com/store/apps/dev?id=6211553945921808791&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page" class="nav-cta" target="_blank" rel="noopener noreferrer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3.61 1.814L13.793 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.382.218-.72.61-.92zM14.852 13.06l2.706 2.706-11.18 6.349 8.474-9.055zm3.86-3.767l2.452 1.392c.635.36.635 1.27 0 1.63l-2.452 1.392-2.97-2.207 2.97-2.207zM6.378 1.885l11.18 6.349-2.706 2.706-8.474-9.055z"/></svg>
-                Google Play
-            </a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div class="hero">
-            <img src="../../images/logos/logo_hamlogger.png" alt="Ham Logger" class="app-icon">
-            <h1>Ham Logger</h1>
-            <p class="tagline">Simple Amateur Radio Contact Logging</p>
-            <div class="store-badges">
-                <a href="https://apps.apple.com/us/app/ham-logger-ham-radio-logbook/id6766154018?utm_source=bioruststudios.com&utm_medium=app_page" target="_blank" rel="noopener noreferrer">
-                    <img src="../../images/badge_downloadontheappstore_black.svg" alt="Download on the App Store" class="app-store-badge">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.kimbrelk.android.hamlogger&referrer=utm_source%3Dbioruststudios.com%26utm_medium%3Dapp_page" target="_blank" rel="noopener noreferrer">
-                    <img src="../../images/badge_getitongoogleplay_black.svg" alt="Get it on Google Play" class="google-play-badge">
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>About</h2>
-            <p class="description">
-                Ham Logger is a straightforward and efficient logbook for amateur radio operators.
-                Track your QSOs with all essential details including callsign, frequency, mode, RST,
-                and more. Perfect for casual operators and contest logging alike.
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>Screenshots</h2>
-            <div class="screenshot-carousel">
-                <div class="carousel-container">
-                    <div class="carousel-slide">
-                        <img src="../../images/hamlogger/screenshot1.png" alt="Ham Logger Screenshot 1">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="../../images/hamlogger/screenshot2.png" alt="Ham Logger Screenshot 2">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="../../images/hamlogger/screenshot3.png" alt="Ham Logger Screenshot 3">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="../../images/hamlogger/screenshot4.png" alt="Ham Logger Screenshot 4">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="../../images/hamlogger/screenshot5.png" alt="Ham Logger Screenshot 5">
-                    </div>
-                </div>
-                <button class="carousel-button prev" onclick="changeSlide(-1)">‹</button>
-                <button class="carousel-button next" onclick="changeSlide(1)">›</button>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Features</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>🎯 Special Event Support</h3>
-                    <p>Full logging support for Field Day, IOTA, POTA, SOTA, WWFF, and Winter Field Day activations</p>
-                </div>
-                <div class="feature">
-                    <h3>📡 ADIF Import & Export</h3>
-                    <p>Seamlessly import and export logs using ADIF 3.1.6 format for easy upload to POTA and other logging services</p>
-                </div>
-                <div class="feature">
-                    <h3>📍 Automatic Gridsquare via GPS</h3>
-                    <p>Automatically calculate your gridsquare using your phone's GPS location</p>
-                </div>
-                <div class="feature">
-                    <h3>⚡ Clean, Fast Interface</h3>
-                    <p>Rapid, error-free logging designed for field operations with minimal taps</p>
-                </div>
-                <div class="feature">
-                    <h3>♾️ Unlimited Capacity</h3>
-                    <p>Store unlimited logbooks and QSOs directly on your device</p>
-                </div>
-                <div class="feature">
-                    <h3>📝 Comprehensive Data Capture</h3>
-                    <p>Log all critical fields: Date, Time, Callsign, Power, Signal Report, Comments, Mode, and Gridsquare</p>
-                </div>
-                <div class="feature">
-                    <h3>🗺️ Gridsquare Map</h3>
-                    <p>Visual map showing your worked gridsquares</p>
-                </div>
-                <div class="feature">
-                    <h3>📊 QSO Statistics</h3>
-                    <p>Detailed breakdowns by band and mode with activity heat graphs</p>
-                </div>
-                <div class="feature">
-                    <h3>📱 Mobile-First Design</h3>
-                    <p>Purpose-built for amateur radio operators in the field with full offline functionality</p>
-                </div>
-                <div class="feature">
-                    <h3>🔍 Callsign Lookup</h3>
-                    <p>Instantly lookup station information by callsign to auto-fill contact details</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-col">
-                <h4>BioRust Studios</h4>
-                <p class="footer-brand-desc">An independent app and game development studio crafting useful, well-designed experiences for Android.</p>
-                <div class="footer-socials">
-                    <a href="https://x.com/BioRustStudios?utm_source=bioruststudios.com&medium=app_page" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
-                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    <a href="mailto:contact@bioruststudios.com" aria-label="Email">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4>Links</h4>
-                <ul class="footer-links-list">
-                    <li><a href="../../index.html">All Apps</a></li>
-                    <li><a href="mailto:contact@bioruststudios.com">Contact</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2022-2026 BioRust Studios, LLC. All rights reserved.
-        </div>
-    </footer>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
-        let autoScrollTimer;
-
-        function getSlidesPerView() {
-            const width = window.innerWidth;
-            if (width > 1024) return 3;
-            if (width > 768) return 2;
-            return 1;
-        }
-
-        function getMaxSlide() {
-            return Math.max(0, totalSlides - getSlidesPerView());
-        }
-
-        function updateCarousel() {
-            const container = document.querySelector('.carousel-container');
-            const slidesPerView = getSlidesPerView();
-            const slideWidth = 100 / slidesPerView;
-            container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
-        }
-
-        function resetAutoScroll() {
-            clearInterval(autoScrollTimer);
-            autoScrollTimer = setInterval(() => {
-                changeSlide(1);
-            }, 5000);
-        }
-
-        function changeSlide(direction) {
-            const maxSlide = getMaxSlide();
-            currentSlide = currentSlide + direction;
-
-            if (currentSlide > maxSlide) {
-                currentSlide = 0;
-            } else if (currentSlide < 0) {
-                currentSlide = maxSlide;
-            }
-
-            updateCarousel();
-            resetAutoScroll();
-        }
-
-        // Update on window resize
-        window.addEventListener('resize', updateCarousel);
-
-        // Start auto-advance carousel
-        resetAutoScroll();
-    </script>
+    <p>Redirecting… If you are not redirected,
+        <a href="https://www.hamlogger.app/">open Ham Logger</a>.</p>
 </body>
 </html>
