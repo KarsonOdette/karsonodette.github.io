@@ -229,6 +229,35 @@
             line-height: 1.4;
         }
 
+        /* ── Retired apps ── */
+        .retired {
+            margin-top: 64px;
+        }
+
+        .retired .category-heading,
+        .retired .app-card .app-name {
+            color: var(--color-body);
+        }
+
+        .retired .app-card {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .retired .app-card .app-icon {
+            filter: grayscale(1);
+            opacity: 0.65;
+        }
+
+        .retired .app-card:hover {
+            box-shadow: var(--shadow-card);
+        }
+
+        .retired .app-card:hover .app-icon {
+            filter: none;
+            opacity: 1;
+        }
+
         /* ── Responsive grid ── */
         @media (min-width: 560px) {
             .apps-grid {
@@ -516,14 +545,6 @@
                         <div class="app-desc">Follow AI-guided stories that keep you moving</div>
                     </div>
                 </a>
-
-                <a href="apps/turfwar/" class="app-card">
-                    <img src="images/logos/logo_turfwar.png" alt="Turf War" class="app-icon" loading="lazy">
-                    <div class="app-info">
-                        <div class="app-name">Turf War</div>
-                        <div class="app-desc">Claim real-world territory in this location-based game</div>
-                    </div>
-                </a>
             </div>
         </div>
 
@@ -558,6 +579,20 @@
                     <div class="app-info">
                         <div class="app-name">Bedtime Story Magic</div>
                         <div class="app-desc">AI-generated personalized bedtime stories for kids</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- No Longer Available -->
+        <div class="category retired">
+            <h3 class="category-heading">No Longer Available</h3>
+            <div class="apps-grid">
+                <a href="apps/turfwar/" class="app-card">
+                    <img src="images/logos/logo_turfwar.png" alt="Turf War" class="app-icon" loading="lazy">
+                    <div class="app-info">
+                        <div class="app-name">Turf War</div>
+                        <div class="app-desc">Claim real-world territory in this location-based game</div>
                     </div>
                 </a>
             </div>
